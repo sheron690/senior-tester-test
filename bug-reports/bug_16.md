@@ -13,6 +13,8 @@ User should be prevented from checking out with an empty cart.
 
 ## Actual Result
 Checkout completes without warning or item validation.
+## Screenshots
+![image](https://github.com/user-attachments/assets/57fd97f9-d707-46ee-881b-392e942a56ed)
 
 ## Suggested Action
 Add cart validation before proceeding to checkout confirmation.
