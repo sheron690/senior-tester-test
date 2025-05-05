@@ -1,4 +1,4 @@
-# Bug Report 1: No Feedback for Adding Items to Cart
+# Bug Report 8: No Feedback for Adding Items to Cart
 
 ## Summary
 Adding items to the cart does not show success confirmation.
