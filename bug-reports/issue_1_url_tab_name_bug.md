@@ -1,4 +1,4 @@
-# Bug Report: Tab Name and URL Mismatch
+# Bug Report 1: Tab Name and URL Mismatch
 
 ## Summary
 The browser tab name and the website URL name are inconsistent, which can confuse users and reduce trust.
