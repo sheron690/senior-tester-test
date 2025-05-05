@@ -12,6 +12,8 @@ Properly formatted product name should appear.
 
 ## Actual Result
 Product name includes raw code or improper syntax.
+## Screenshots
+![image](https://github.com/user-attachments/assets/983cdd94-42b2-496e-9f95-06f6fd13a179)
 
 ## Suggested Action
 Verify the data source and escape any code being rendered in UI fields.
