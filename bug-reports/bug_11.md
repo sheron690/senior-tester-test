@@ -12,6 +12,8 @@ The product description should display formatted, user-readable information.
 
 ## Actual Result
 The description section displays code fragments or raw markup.
+## Screenshots
+![image](https://github.com/user-attachments/assets/f65b58ba-06e6-4da5-b55e-7f9f91093a38)
 
 ## Suggested Action
 Review and sanitize data rendering logic to ensure code is not shown to users.
