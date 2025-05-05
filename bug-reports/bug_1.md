@@ -12,6 +12,8 @@ The tab name should match the branding or title of the URL/site, such as "Swag L
 
 ## Actual Result
 The tab displays "Swag Labs" as the name, which does not match the URL "https://www.saucedemo.com/v1/".
+## Screenshots
+![image](https://github.com/user-attachments/assets/ea8cff76-28fe-40c1-b33f-04caa6cd83b8)
 
 ## Suggested Action
 Update the <title> tag in the HTML head to accurately reflect the site URL or brand name for consistency and professionalism.
