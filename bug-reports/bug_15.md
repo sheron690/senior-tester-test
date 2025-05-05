@@ -12,6 +12,8 @@ Sidebar should be collapsible or overlay gracefully.
 
 ## Actual Result
 Sidebar obscures main content.
+## Screenshots
+![image](https://github.com/user-attachments/assets/331ea674-92da-4946-a024-261b92ad94e3)
 
 ## Suggested Action
 Make layout responsive to preserve content visibility.
