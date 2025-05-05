@@ -10,6 +10,8 @@ Restrict to a single session per user account.
 
 ## Actual Result
 Multiple concurrent sessions allowed.
+## Screenshots
+![image](https://github.com/user-attachments/assets/a3110975-5eee-4603-9b5d-74043fe1f09b)
 
 ## Suggested Action
 Implement session management to prevent multiple concurrent logins per user.
