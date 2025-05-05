@@ -13,6 +13,9 @@ All sessions should terminate after logout.
 
 ## Actual Result
 Second tab remains logged in.
+## Screenshots
+![image](https://github.com/user-attachments/assets/20ae609b-4745-45e1-b630-fdaa55582b81)
+![image](https://github.com/user-attachments/assets/d095ede7-c205-46c1-acb3-43ab1a7ad493)
 
 ## Suggested Action
 Invalidate sessions across all tabs upon logout.
