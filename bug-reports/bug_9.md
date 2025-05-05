@@ -11,6 +11,7 @@ Option to select multiple quantities should be available.
 
 ## Actual Result
 Only one item can be added per product.
+## Screenshots
 ![image](https://github.com/user-attachments/assets/6e033a5a-aa56-44dd-8cc2-8c9b049fe97d)
 ![image](https://github.com/user-attachments/assets/bc4c1939-d59d-47da-9903-44e421459fa6)
 
