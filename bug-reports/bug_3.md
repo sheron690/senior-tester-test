@@ -14,6 +14,8 @@ Message should indicate password is incorrect.
 
 ## Actual Result
 Displays: "Epic sadface: Username and password do not match any user in this service."
+## Screenshots
+![image](https://github.com/user-attachments/assets/b3f1f7c5-b91b-48e5-853e-b1717229995c)
 
 ## Suggested Action
 Provide specific error message indicating the actual issue.
