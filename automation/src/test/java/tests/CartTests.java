@@ -12,6 +12,10 @@ public class CartTests {
 
     @BeforeMethod
     public void setUp() {
+        // Set the path to chromedriver
+        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");  // Path to chromedriver
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless"); // Run in headless mode (if required)
         driver = DriverFactory.createDriver();
         loginStandardUser();
     }
