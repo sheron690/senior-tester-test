@@ -47,3 +47,4 @@ jobs:
       working-directory: automation
       env:
         CHROME_BIN: /usr/bin/google-chrome
+        
