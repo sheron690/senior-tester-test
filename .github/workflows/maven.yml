@@ -37,13 +37,17 @@ jobs:
     - name: Set up Chrome
       uses: browser-actions/setup-chrome@v1
 
-    - name: Install ChromeDriver
+    - name: Get the correct ChromeDriver version
       run: |
-        # Get the latest stable ChromeDriver version number
-        CCHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE_136)
+        # Get the version of Google Chrome installed
+        CHROME_VERSION=$(google-chrome --version | cut -d ' ' -f 3 | cut -d '.' -f 1-3)
         
-        # Download ChromeDriver
-        wget https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+        # Fetch the corresponding ChromeDriver version based on the major Chrome version
+        CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION})
+        echo "Using ChromeDriver version: ${CHROMEDRIVER_VERSION}"
+        
+        # Download the correct ChromeDriver
+        wget https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip
         
         # Unzip ChromeDriver
         unzip chromedriver_linux64.zip
