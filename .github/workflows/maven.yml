@@ -1,0 +1,35 @@
+name: Run Selenium Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Set up Chrome
+      uses: browser-actions/setup-chrome@v1
+
+    - name: Print Chrome version
+      run: chrome --version
+
+    - name: Set up Maven
+      run: sudo apt-get install maven -y
+
+    - name: Run Tests
+      run: mvn clean test -Dwebdriver.chrome.driver=/usr/bin/chrome
+      env:
+        CHROME_BIN: /usr/bin/google-chrome
