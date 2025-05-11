@@ -22,7 +22,7 @@ public class LoginTests {
         options.addArguments("--no-sandbox");  // For CI environments like GitHub Actions
         options.addArguments("--disable-dev-shm-usage");  // To prevent issues in CI environments
 
-        driver = DriverFactory.createDriver(options);  // Use the driver factory method that accepts options
+        driver = DriverFactory.createDriver();  // Use the driver factory method that accepts options
         driver.get("https://www.saucedemo.com/v1/");
     }
 
