@@ -3,11 +3,12 @@ package tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import utils.DriverFactory;  // Make sure you import the DriverFactory
 
 public class LoginTests {
 
@@ -15,8 +16,13 @@ public class LoginTests {
 
     @BeforeMethod
     public void setup() {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
-        driver = new ChromeDriver();
+        // Set ChromeOptions for headless mode
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        options.addArguments("--no-sandbox");  // For CI environments like GitHub Actions
+        options.addArguments("--disable-dev-shm-usage");  // To prevent issues in CI environments
+
+        driver = DriverFactory.createDriver(options);  // Use the driver factory method that accepts options
         driver.get("https://www.saucedemo.com/v1/");
     }
 
