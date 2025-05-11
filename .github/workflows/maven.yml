@@ -25,9 +25,19 @@ jobs:
 
     - name: Install ChromeDriver
       run: |
-        sudo apt-get update
-        sudo apt-get install -y chromium-chromedriver
-        sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
+        # Get the latest stable ChromeDriver version number
+        CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+        
+        # Download ChromeDriver
+        wget https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+        
+        # Unzip ChromeDriver
+        unzip chromedriver_linux64.zip
+        
+        # Remove existing chromedriver and move the new one
+        sudo rm -f /usr/bin/chromedriver
+        sudo mv chromedriver /usr/bin/chromedriver
+        rm chromedriver_linux64.zip
 
     - name: Print Chrome version
       run: chrome --version
