@@ -24,13 +24,13 @@ jobs:
       uses: browser-actions/setup-chrome@v1
 
     - name: Print Chrome version
-      run: google-chrome --version  # use `google-chrome`, not `chrome`
+      run: chrome --version
 
     - name: Set up Maven
-      run: sudo apt-get update && sudo apt-get install -y maven
+      run: sudo apt-get install maven -y
 
     - name: Run Tests
-      run: mvn clean test -Dwebdriver.chrome.driver=/usr/bin/google-chrome
+      run: mvn clean test -Dwebdriver.chrome.driver=/usr/bin/chrome
       working-directory: ../../
       env:
         CHROME_BIN: /usr/bin/google-chrome
