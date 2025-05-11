@@ -23,14 +23,17 @@ jobs:
     - name: Set up Chrome
       uses: browser-actions/setup-chrome@v1
 
+    - name: Install ChromeDriver
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y chromium-chromedriver
+        sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
+
     - name: Print Chrome version
       run: chrome --version
 
-    - name: Set up Maven
-      run: sudo apt-get install maven -y
-
     - name: Run Tests
-      run: mvn clean test -Dwebdriver.chrome.driver=/usr/bin/chrome
+      run: mvn clean test -Dwebdriver.chrome.driver=/usr/bin/chromedriver
       working-directory: automation
       env:
         CHROME_BIN: /usr/bin/google-chrome
