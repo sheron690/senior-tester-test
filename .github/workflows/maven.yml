@@ -20,6 +20,20 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
+    - name: Install dependencies for Google Chrome
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          libxss1 \
+          libappindicator3-1 \
+          libindicator3-7 \
+          fonts-liberation \
+          libnspr4 \
+          libnss3 \
+          lsb-release \
+          xdg-utils \
+          wget
+
     - name: Set up Chrome
       uses: browser-actions/setup-chrome@v1
 
@@ -39,12 +53,11 @@ jobs:
         sudo mv chromedriver /usr/bin/chromedriver
         rm chromedriver_linux64.zip
 
-    - name: Print Chrome version
-      run: chrome --version
+    - name: Print Google Chrome version
+      run: google-chrome --version
 
-    - name: Run Tests
-      run: mvn clean test -Dwebdriver.chrome.driver=/usr/bin/chromedriver
+    - name: Run Tests in Headless Mode
+      run: mvn clean test -Dwebdriver.chrome.driver=/usr/bin/chromedriver -Dchrome.options="--headless --no-sandbox --disable-gpu"
       working-directory: automation
       env:
         CHROME_BIN: /usr/bin/google-chrome
-        
