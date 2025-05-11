@@ -55,3 +55,4 @@ public class CartTests {
         Assert.assertFalse(checkoutSummary == null || checkoutSummary.getText().isEmpty(), "Unexpected behavior: empty cart should not allow full checkout.");
     }
 }
+
