@@ -16,7 +16,7 @@ public class CartTests {
         // Set the path to chromedriver
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
-        driver = DriverFactory.createDriver(options); // pass options
+        driver = DriverFactory.createDriver(); 
 
         loginStandardUser();
     }
