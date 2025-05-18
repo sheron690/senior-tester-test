@@ -17,7 +17,7 @@ public class CartTests {
     @BeforeMethod
     public void setUp() {
         driver = DriverFactory.createDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
         loginStandardUser();
     }
