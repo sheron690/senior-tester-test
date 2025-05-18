@@ -68,11 +68,3 @@ jobs:
       working-directory: automation
       env:
         CHROME_BIN: /usr/bin/google-chrome
-        
-              - name: Upload Artifact
-                uses: actions/upload-artifact@v3
-                with:
-                  name: example-artifact
-                  path: output.txt
-
-
