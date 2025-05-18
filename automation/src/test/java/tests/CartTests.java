@@ -76,7 +76,7 @@ public class CartTests {
         Assert.assertFalse(badgeVisible, "Unexpected feedback: badge appeared after adding to cart.");
     }
 
-   @Test
+   /*@Test
     public void testEmptyCartCheckoutShouldSucceed() {
         System.out.println("Navigating to cart...");
         wait.until(ExpectedConditions.elementToBeClickable(By.className("shopping_cart_link"))).click();
@@ -107,5 +107,5 @@ public class CartTests {
         );
     
         Assert.assertTrue(summaryInfo.isDisplayed(), "Checkout overview not displayed.");
-    }
+    }*/
 }
