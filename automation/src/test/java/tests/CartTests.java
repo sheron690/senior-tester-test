@@ -28,7 +28,7 @@ public class CartTests {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown(ITestResult result) {
         if (ITestResult.FAILURE == result.getStatus()) {
             TakesScreenshot ts = (TakesScreenshot) driver;
             File src = ts.getScreenshotAs(OutputType.FILE);
