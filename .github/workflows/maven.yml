@@ -60,8 +60,8 @@ jobs:
       env:
         CHROME_BIN: /opt/google/chrome/chrome
 
-    - name: Download Surefire Reports
-      uses: actions/download-artifact@v4
+    - name: Upload Surefire Reports
+      uses: actions/upload-artifact@v4
       with:
         name: surefire-reports
         path: automation/target/surefire-reports
