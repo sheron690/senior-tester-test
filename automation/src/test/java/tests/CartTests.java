@@ -68,7 +68,6 @@ public class CartTests {
         checkoutBtn.click();
     
         System.out.println("Filling out form...");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("first-name"))).sendKeys("Test");
         driver.findElement(By.id("last-name")).sendKeys("User");
         driver.findElement(By.id("postal-code")).sendKeys("12345");
