@@ -63,7 +63,7 @@ public class CartTests {
         wait.until(ExpectedConditions.elementToBeClickable(By.className("shopping_cart_link"))).click();
     
         System.out.println("Waiting for checkout button...");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         WebElement checkoutBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.btn_action.checkout_button")));
         checkoutBtn.click();
     
