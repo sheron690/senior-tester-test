@@ -62,10 +62,11 @@ public class CartTests {
         System.out.println("Navigating to cart...");
         wait.until(ExpectedConditions.elementToBeClickable(By.className("shopping_cart_link"))).click();
     
-        System.out.println("Clicking checkout...");
-        WebElement checkoutBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'CHECKOUT')]")));
-        System.out.println("Clicking checkout...");
-        checkoutBtn.click();
+        System.out.println("Waiting for checkout button...");
+        WebElement checkoutBtn = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("a.btn_action.checkout_button")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", checkoutBtn);
+        wait.until(ExpectedConditions.elementToBeClickable(checkoutBtn)).click();
+
     
         System.out.println("Filling out form...");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("first-name"))).sendKeys("Test");
