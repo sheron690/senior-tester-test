@@ -63,7 +63,9 @@ public class CartTests {
         wait.until(ExpectedConditions.elementToBeClickable(By.className("shopping_cart_link"))).click();
     
         System.out.println("Clicking checkout...");
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".checkout_button"))).click();
+        WebElement checkoutBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'CHECKOUT')]")));
+        System.out.println("Clicking checkout...");
+        checkoutBtn.click();
     
         System.out.println("Filling out form...");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("first-name"))).sendKeys("Test");
