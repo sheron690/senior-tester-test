@@ -45,11 +45,11 @@ jobs:
       run: |
         wget https://storage.googleapis.com/chrome-for-testing-public/136.0.7103.92/linux64/chromedriver-linux64.zip
         unzip chromedriver-linux64.zip
-        sudo mv chromedriver-linux64/chromedriver /usr/bin/google-chrome
+        sudo mv chromedriver-linux64/chromedriver /usr/bin/chromedriver
         rm -rf chromedriver-linux64 chromedriver-linux64.zip
 
     - name: Print Google Chrome version
-      run: google-chrome --version
+      run: /opt/google/chrome/chrome --version
 
     - name: Print ChromeDriver version
       run: chromedriver --version
@@ -58,6 +58,6 @@ jobs:
       run: mvn clean test -Dwebdriver.chrome.driver=/usr/bin/chromedriver -Dchrome.options="--headless --no-sandbox --disable-gpu" -X
       working-directory: automation
       env:
-        CHROME_BIN: /usr/bin/google-chrome
+        CHROME_BIN: /opt/google/chrome/chrome
 
         
