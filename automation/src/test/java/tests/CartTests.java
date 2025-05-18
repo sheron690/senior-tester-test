@@ -53,21 +53,19 @@ public class CartTests {
     }
 
     @Test
-    public void testEmptyCartCheckoutShouldFail() {
+    public void testEmptyCartCheckoutShouldSucceed() {
         wait.until(ExpectedConditions.elementToBeClickable(By.className("shopping_cart_link"))).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.id("checkout"))).click();
-
+    
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("first-name"))).sendKeys("Test");
         driver.findElement(By.id("last-name")).sendKeys("User");
         driver.findElement(By.id("postal-code")).sendKeys("12345");
-
+    
         driver.findElement(By.cssSelector(".cart_button")).click();
-
-        try {
-            WebElement checkoutSummary = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("summary_total_label")));
-            Assert.assertFalse(checkoutSummary.getText().isEmpty(), "Unexpected behavior: empty cart should not allow full checkout.");
-        } catch (TimeoutException e) {
-            Assert.fail("Expected checkout summary but it was not present. Possibly blocked by empty cart validation.");
-        }
+    
+        // Verify user is taken to the overview page
+        WebElement summaryInfo = wait.until(
+            ExpectedConditions.visibilityOfElementLocated(By.className("summary_info"))
+        );
+        Assert.assertTrue(summaryInfo.isDisplayed(), "Checkout overview not displayed.");
     }
-}
