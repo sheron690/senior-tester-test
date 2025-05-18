@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import utils.DriverFactory;
-
 import java.time.Duration;
 
 public class CartTests {
