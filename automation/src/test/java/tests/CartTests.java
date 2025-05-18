@@ -68,7 +68,13 @@ public class CartTests {
         checkoutBtn.click();
     
         System.out.println("Filling out form...");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("first-name"))).sendKeys("Test");
+        wait.until(ExpectedConditions.urlContains("checkout-step-one.html"));
+
+        // Wait for form to be ready
+        WebElement firstName = wait.until(ExpectedConditions.elementToBeClickable(By.id("first-name")));
+        firstName.sendKeys("Test");
+
+        // Fill other fields
         driver.findElement(By.id("last-name")).sendKeys("User");
         driver.findElement(By.id("postal-code")).sendKeys("12345");
     
