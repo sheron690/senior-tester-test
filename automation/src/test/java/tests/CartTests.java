@@ -68,6 +68,7 @@ public class CartTests {
         checkoutBtn.click();
     
         System.out.println("Filling out form...");
+        Assert.assertTrue(driver.getCurrentUrl().contains("checkout-step-two.html"), "Did not reach checkout overview.");
         wait.until(ExpectedConditions.urlContains("checkout-step-one.html"));
 
         // Wait for form to be ready
