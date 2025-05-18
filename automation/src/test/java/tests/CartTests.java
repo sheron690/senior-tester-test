@@ -40,16 +40,22 @@ public class CartTests {
     }
 
     @Test
-    public void testAddToCartFeedback() {
+    public void testNoFeedbackAfterAddToCart() {
+        System.out.println("Clicking Add to Cart button...");
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".btn_inventory"))).click();
-
-        WebElement cartBadge = wait.until(
-        ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".shopping_cart_badge"))
-        );
-
-        // Assert it's displayed
-        Assert.assertTrue(cartBadge.isDisplayed(), "Cart badge not displayed after adding item.");
-        Assert.assertEquals(cartBadge.getText(), "1", "Cart badge does not show correct count.");
+    
+        System.out.println("Checking that no feedback badge appears...");
+        boolean badgeVisible;
+        try {
+            // Small wait just in case the badge would appear
+            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
+            shortWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".shopping_cart_badge")));
+            badgeVisible = true;
+        } catch (TimeoutException e) {
+            badgeVisible = false;
+        }
+    
+        Assert.assertFalse(badgeVisible, "Unexpected feedback: badge appeared after adding to cart.");
     }
 
     @Test
