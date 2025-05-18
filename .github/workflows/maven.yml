@@ -11,57 +11,68 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Set up Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
+    - name: Create dummy file
+      run: echo "Hello, world!" > output.txt
+        
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: example-artifact
+        path: output.txt
 
-      - name: Install dependencies for Google Chrome
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            libxss1 \
-            libappindicator3-1 \
-            libindicator3-7 \
-            fonts-liberation \
-            libnspr4 \
-            libnss3 \
-            lsb-release \
-            xdg-utils \
-            wget
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
 
-      - name: Download Chrome 136.0.7103.92
-        run: |
-          wget https://storage.googleapis.com/chrome-for-testing-public/136.0.7103.92/linux64/chrome-linux64.zip
-          unzip chrome-linux64.zip
-          sudo mv chrome-linux64 /opt/google/chrome
-          rm chrome-linux64.zip
+    - name: Install dependencies for Google Chrome
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          libxss1 \
+          libappindicator3-1 \
+          libindicator3-7 \
+          fonts-liberation \
+          libnspr4 \
+          libnss3 \
+          lsb-release \
+          xdg-utils \
+          wget
 
-      - name: Install ChromeDriver for Chrome 136.0.7103.92
-        run: |
-          wget https://storage.googleapis.com/chrome-for-testing-public/136.0.7103.92/linux64/chromedriver-linux64.zip
-          unzip chromedriver-linux64.zip
-          sudo mv chromedriver-linux64/chromedriver /usr/bin/chromedriver
-          rm -rf chromedriver-linux64 chromedriver-linux64.zip
+    - name: Download Chrome 136.0.7103.92
+      run: |
+        wget https://storage.googleapis.com/chrome-for-testing-public/136.0.7103.92/linux64/chrome-linux64.zip
+        unzip chrome-linux64.zip
+        sudo mv chrome-linux64 /opt/google/chrome
+        rm chrome-linux64.zip
 
-      - name: Print Google Chrome version
-        run: /opt/google/chrome/chrome --version
+    - name: Install ChromeDriver for Chrome 136.0.7103.92
+      run: |
+        wget https://storage.googleapis.com/chrome-for-testing-public/136.0.7103.92/linux64/chromedriver-linux64.zip
+        unzip chromedriver-linux64.zip
+        sudo mv chromedriver-linux64/chromedriver /usr/bin/google-chrome
+        rm -rf chromedriver-linux64 chromedriver-linux64.zip
 
-      - name: Print ChromeDriver version
-        run: chromedriver --version
+    - name: Print Google Chrome version
+      run: google-chrome --version
 
-      - name: Run Tests in Headless Mode
-        run: mvn clean test -Dwebdriver.chrome.driver=/usr/bin/chromedriver -X
-        working-directory: automation
-        env:
-          CHROME_BIN: /opt/google/chrome/chrome
+    - name: Print ChromeDriver version
+      run: chromedriver --version
 
-      - name: Upload test reports
-        uses: actions/upload-artifact@v3
-        with:
-          name: surefire-reports
-          path: automation/target/surefire-reports
+    - name: Run Tests in Headless Mode
+      run: mvn clean test -Dwebdriver.chrome.driver=/usr/bin/chromedriver -Dchrome.options="--headless --no-sandbox --disable-gpu" -X
+      working-directory: automation
+      env:
+        CHROME_BIN: /usr/bin/google-chrome
+        
+              - name: Upload Artifact
+                uses: actions/upload-artifact@v3
+                with:
+                  name: example-artifact
+                  path: output.txt
+
+
