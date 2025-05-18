@@ -5,8 +5,14 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import utils.DriverFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.time.Duration;
 
 public class CartTests {
@@ -23,6 +29,19 @@ public class CartTests {
 
     @AfterMethod
     public void tearDown() {
+        if (ITestResult.FAILURE == result.getStatus()) {
+            TakesScreenshot ts = (TakesScreenshot) driver;
+            File src = ts.getScreenshotAs(OutputType.FILE);
+            String filename = "screenshot-" + result.getName() + ".png";
+            File dest = new File("target/surefire-reports/screenshots/" + filename);
+            dest.getParentFile().mkdirs(); // Ensure the directory exists
+            try {
+                Files.copy(src.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                System.out.println("Screenshot saved: " + dest.getAbsolutePath());
+            } catch (IOException e) {
+                System.err.println("Failed to save screenshot: " + e.getMessage());
+            }
+        }
         if (driver != null)
             driver.quit();
     }
