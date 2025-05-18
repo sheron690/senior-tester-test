@@ -54,19 +54,25 @@ public class CartTests {
 
     @Test
     public void testEmptyCartCheckoutShouldSucceed() {
+        System.out.println("Navigating to cart...");
         wait.until(ExpectedConditions.elementToBeClickable(By.className("shopping_cart_link"))).click();
+    
+        System.out.println("Clicking checkout...");
         wait.until(ExpectedConditions.elementToBeClickable(By.id("checkout"))).click();
     
+        System.out.println("Filling out form...");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("first-name"))).sendKeys("Test");
         driver.findElement(By.id("last-name")).sendKeys("User");
         driver.findElement(By.id("postal-code")).sendKeys("12345");
     
+        System.out.println("Submitting form...");
         driver.findElement(By.cssSelector(".cart_button")).click();
     
-        // Verify user is taken to the overview page
+        System.out.println("Waiting for summary_info...");
         WebElement summaryInfo = wait.until(
             ExpectedConditions.visibilityOfElementLocated(By.className("summary_info"))
         );
+
         Assert.assertTrue(summaryInfo.isDisplayed(), "Checkout overview not displayed.");
     }
 }
