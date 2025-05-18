@@ -69,3 +69,4 @@ public class CartTests {
         );
         Assert.assertTrue(summaryInfo.isDisplayed(), "Checkout overview not displayed.");
     }
+}
