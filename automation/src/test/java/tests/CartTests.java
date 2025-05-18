@@ -64,7 +64,7 @@ public class CartTests {
         wait.until(ExpectedConditions.elementToBeClickable(By.className("shopping_cart_link"))).click();
     
         System.out.println("Clicking checkout...");
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("checkout"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("checkout_button"))).click();
     
         System.out.println("Filling out form...");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("first-name"))).sendKeys("Test");
