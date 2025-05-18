@@ -33,7 +33,8 @@ public class LoginTests {
         driver.findElement(By.id("user-name")).sendKeys("invalid_user");
         driver.findElement(By.id("password")).sendKeys("invalid_pass");
         driver.findElement(By.id("login-button")).click();
-        WebElement error = driver.findElement(By.cssSelector(".error-message-container"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement error = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".error-message-container")));
         Assert.assertTrue(error.isDisplayed());
     }
 
