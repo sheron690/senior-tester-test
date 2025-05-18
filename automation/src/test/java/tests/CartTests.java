@@ -16,10 +16,6 @@ public class CartTests {
 
     @BeforeMethod
     public void setUp() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
-        options.addArguments("--window-size=1920,1080");
-
         driver = DriverFactory.createDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -47,8 +43,13 @@ public class CartTests {
     public void testAddToCartFeedback() {
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".btn_inventory"))).click();
 
-        WebElement cartBadge = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("shopping_cart_badge")));
+        WebElement cartBadge = wait.until(
+        ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".shopping_cart_badge"))
+        );
+
+        // Assert it's displayed
         Assert.assertTrue(cartBadge.isDisplayed(), "Cart badge not displayed after adding item.");
+        Assert.assertEquals(cartBadge.getText(), "1", "Cart badge does not show correct count.");
     }
 
     @Test
