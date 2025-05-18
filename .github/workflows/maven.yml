@@ -55,10 +55,10 @@ jobs:
       run: chromedriver --version
 
     - name: Download Surefire Reports
-      uses: actions/download-artifact@v4.3.0
+      uses: actions/download-artifact@v4
       with:
         name: surefire-reports
-        path: downloaded-reports
+        path: automation/target/surefire-reports
 
     - name: Run Tests in Headless Mode
       run: mvn clean test -Dwebdriver.chrome.driver=/usr/bin/chromedriver -Dchrome.options="--headless --no-sandbox --disable-gpu" -X
