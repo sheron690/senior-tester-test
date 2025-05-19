@@ -57,12 +57,27 @@ public class CartTests {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("inventory_list")));
     }
 
+    private void takeStepScreenshot(String stepName) {
+        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        String filename = "step-" + System.currentTimeMillis() + "-" + stepName + ".png";
+        File dest = new File("target/surefire-reports/screenshots/" + filename);
+        dest.getParentFile().mkdirs();
+        try {
+            Files.copy(src.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("Screenshot for " + stepName + " saved: " + dest.getAbsolutePath());
+        } catch (IOException e) {
+            System.err.println("Failed to save screenshot for " + stepName + ": " + e.getMessage());
+        }
+    }
+
     @Test
     public void testCannotAddSameItemTwice() {
     System.out.println("Locating the first product's Add to Cart button...");
     WebElement addToCartButton = wait.until(
         ExpectedConditions.elementToBeClickable(By.cssSelector(".inventory_item:first-of-type .btn_inventory"))
     );
+
+    takeStepScreenshot("step1-initial-button");
     
     String initialButtonText = addToCartButton.getText();
     System.out.println("Initial button text: " + initialButtonText);
@@ -70,11 +85,14 @@ public class CartTests {
 
     System.out.println("Clicking Add to Cart...");
     addToCartButton.click();
+    takeStepScreenshot("step2-after-click");
 
     System.out.println("Waiting for button to change to Remove...");
     WebElement removeButton = wait.until(
         ExpectedConditions.elementToBeClickable(By.cssSelector(".inventory_item:first-of-type .btn_inventory"))
     );
+    takeStepScreenshot("step3-after-change");
+        
     String updatedButtonText = removeButton.getText();
     System.out.println("Updated button text: " + updatedButtonText);
     Assert.assertTrue(updatedButtonText.equalsIgnoreCase("Remove"), "Button should now say 'Remove'");
@@ -84,6 +102,7 @@ public class CartTests {
     int addButtonsCount = driver.findElements(
         By.cssSelector(".inventory_item:first-of-type .btn_inventory")
     ).stream().filter(el -> el.getText().equalsIgnoreCase("Add to cart")).toArray().length;
+    takeStepScreenshot("step4-final-check");
 
     Assert.assertEquals(addButtonsCount, 0, "Add to cart button still present after adding item.");
 }
