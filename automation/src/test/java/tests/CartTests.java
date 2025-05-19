@@ -92,6 +92,7 @@ public class CartTests {
         ExpectedConditions.elementToBeClickable(By.cssSelector(".inventory_item:first-of-type .btn_inventory"))
     );
     takeStepScreenshot("step3-after-change");
+    wait.until(ExpectedConditions.textToBePresentInElement(buttonAfterClick, "Remove"));
         
     String updatedButtonText = removeButton.getText();
     System.out.println("Updated button text: " + updatedButtonText);
