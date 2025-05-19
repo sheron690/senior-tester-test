@@ -7,7 +7,7 @@ This repository contains my submission for the Senior Test Engineer assessment u
 - `test-plan/` – Functional test strategy and priorities
 - `automation/` – Java + Selenium automated tests
 - `bug-reports/` – Issues encountered during testing with reproduction steps
-- `screenshots/` – Supporting visuals for bugs (if any)
+- `screenshots` – Supporting visuals for bugs (if any) added to the bug reports
 
 ## Technologies Used
 - Java 17
