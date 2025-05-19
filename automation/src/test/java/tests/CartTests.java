@@ -72,41 +72,41 @@ public class CartTests {
 
     @Test
     public void testCannotAddSameItemTwice() {
-    System.out.println("Locating the first product's Add to Cart button...");
-    WebElement addToCartButton = wait.until(
-        ExpectedConditions.elementToBeClickable(By.cssSelector(".inventory_item:first-of-type .btn_inventory"))
-    );
-
-    takeStepScreenshot("step1-initial-button");
+        System.out.println("Locating the first product's Add to Cart button...");
+        WebElement addToCartButton = wait.until(
+            ExpectedConditions.elementToBeClickable(By.cssSelector(".inventory_item:first-of-type .btn_inventory"))
+        );
     
-    String initialButtonText = addToCartButton.getText();
-    System.out.println("Initial button text: " + initialButtonText);
-    Assert.assertTrue(initialButtonText.equalsIgnoreCase("Add to cart"), "Button should initially say 'Add to cart'");
-
-    System.out.println("Clicking Add to Cart...");
-    addToCartButton.click();
-    takeStepScreenshot("step2-after-click");
-
-    System.out.println("Waiting for button to change to Remove...");
-    WebElement removeButton = wait.until(
-        ExpectedConditions.elementToBeClickable(By.cssSelector(".inventory_item:first-of-type .btn_inventory"))
-    );
-    takeStepScreenshot("step3-after-change");
-    wait.until(ExpectedConditions.textToBePresentInElement(buttonAfterClick, "Remove"));
-        
-    String updatedButtonText = removeButton.getText();
-    System.out.println("Updated button text: " + updatedButtonText);
-    Assert.assertTrue(updatedButtonText.equalsIgnoreCase("Remove"), "Button should now say 'Remove'");
-
-    System.out.println("Checking that Add to Cart button no longer exists...");
-    // There should be no other "Add to cart" button for the same item
-    int addButtonsCount = driver.findElements(
-        By.cssSelector(".inventory_item:first-of-type .btn_inventory")
-    ).stream().filter(el -> el.getText().equalsIgnoreCase("Add to cart")).toArray().length;
-    takeStepScreenshot("step4-final-check");
-
-    Assert.assertEquals(addButtonsCount, 0, "Add to cart button still present after adding item.");
-}
+        takeStepScreenshot("step1-initial-button");
+    
+        String initialButtonText = addToCartButton.getText();
+        System.out.println("Initial button text: " + initialButtonText);
+        Assert.assertTrue(initialButtonText.equalsIgnoreCase("Add to cart"), "Button should initially say 'Add to cart'");
+    
+        System.out.println("Clicking Add to Cart...");
+        addToCartButton.click();
+        takeStepScreenshot("step2-after-click");
+    
+        System.out.println("Waiting for button to change to Remove...");
+        WebElement removeButton = wait.until(
+            ExpectedConditions.elementToBeClickable(By.cssSelector(".inventory_item:first-of-type .btn_inventory"))
+        );
+        takeStepScreenshot("step3-after-change");
+    
+        wait.until(ExpectedConditions.textToBePresentInElement(removeButton, "Remove"));
+    
+        String updatedButtonText = removeButton.getText();
+        System.out.println("Updated button text: " + updatedButtonText);
+        Assert.assertTrue(updatedButtonText.equalsIgnoreCase("Remove"), "Button should now say 'Remove'");
+    
+        System.out.println("Checking that Add to Cart button no longer exists...");
+        int addButtonsCount = driver.findElements(
+            By.cssSelector(".inventory_item:first-of-type .btn_inventory")
+        ).stream().filter(el -> el.getText().equalsIgnoreCase("Add to cart")).toArray().length;
+        takeStepScreenshot("step4-final-check");
+    
+        Assert.assertEquals(addButtonsCount, 0, "Add to cart button still present after adding item.");
+    }
 
     /*@Test
     public void testNoFeedbackAfterAddToCart() {
