@@ -89,10 +89,10 @@ public class CartTests {
     
         System.out.println("Waiting for REMOVE button to appear...");
         WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement updatedButton = longWait.until(ExpectedConditions.visibilityOfElementLocated(
-        By.xpath("//button[contains(@class, 'btn_inventory') and text()='REMOVE']")));
-        takeStepScreenshot("step3-remove-button-visible");
-    
+        WebElement updatedButton = wait.until(
+            ExpectedConditions.elementToBeClickable(By.cssSelector(".btn_inventory"))
+        );
+        
         String updatedButtonText = updatedButton.getText();
         System.out.println("Updated button text: " + updatedButtonText);
         Assert.assertTrue(updatedButtonText.equalsIgnoreCase("Remove"), "Button should now say 'Remove'");
