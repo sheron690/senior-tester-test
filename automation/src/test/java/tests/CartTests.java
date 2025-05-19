@@ -87,15 +87,13 @@ public class CartTests {
         addToCartButton.click();
         takeStepScreenshot("step2-after-click");
     
-        System.out.println("Waiting for button to change to Remove...");
-        WebElement removeButton = wait.until(
-            ExpectedConditions.elementToBeClickable(By.cssSelector(".inventory_item:first-of-type .btn_inventory"))
+        System.out.println("Waiting for REMOVE button to appear...");
+        WebElement updatedButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+        By.xpath("//button[contains(@class, 'btn_inventory') and text()='REMOVE']"))
         );
-        takeStepScreenshot("step3-after-change");
+        takeStepScreenshot("step3-remove-button-visible");
     
-        wait.until(ExpectedConditions.textToBePresentInElement(removeButton, "Remove"));
-    
-        String updatedButtonText = removeButton.getText();
+        String updatedButtonText = updatedButton.getText();
         System.out.println("Updated button text: " + updatedButtonText);
         Assert.assertTrue(updatedButtonText.equalsIgnoreCase("Remove"), "Button should now say 'Remove'");
     
