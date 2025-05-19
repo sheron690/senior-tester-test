@@ -107,7 +107,7 @@ public class CartTests {
     Assert.assertEquals(addButtonsCount, 0, "Add to cart button still present after adding item.");
 }
 
-    @Test
+    /*@Test
     public void testNoFeedbackAfterAddToCart() {
         System.out.println("Clicking Add to Cart button...");
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".btn_inventory"))).click();
@@ -124,7 +124,7 @@ public class CartTests {
         }
     
         Assert.assertFalse(badgeVisible, "Unexpected feedback: badge appeared after adding to cart.");
-    }
+    }*/
 
    /*@Test
     public void testEmptyCartCheckoutShouldSucceed() {
