@@ -19,5 +19,6 @@ This repository contains my submission for the Senior Test Engineer assessment u
 1. Ensure you have Java 17+ and Maven installed.
 2. Navigate to the `automation/` directory and run:
    ```bash
-   mvn clean test
+   mvn clean test 
    ```
+   
