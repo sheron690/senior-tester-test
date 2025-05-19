@@ -90,7 +90,7 @@ public class CartTests {
         System.out.println("Waiting for REMOVE button to appear...");
         WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement updatedButton = wait.until(
-            ExpectedConditions.elementToBeClickable(By.cssSelector(".btn_inventory"))
+            ExpectedConditions.elementToBeClickable(By.cssSelector(".inventory_item:first-of-type .btn_inventory"))
         );
         
         String updatedButtonText = updatedButton.getText();
